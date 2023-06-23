@@ -99,6 +99,7 @@ extension UIImage {
 }
 
 let imagePath = Bundle.main.path(forResource: "Lenna_(test_image)", ofType: "png")!
+
 let image = UIImage(contentsOfFile: imagePath)!
 
 let image45 = image.imageWithRotatedPixelsByDegrees(45)!
@@ -117,4 +118,6 @@ let imageOrientation90 = UIImage(cgImage: image.cgImage!, scale: 1, orientation:
 
 let imageOrientation90Rotated90 = imageOrientation90.imageWithRotatedPixelsByDegrees(90)!
 print("\(imageOrientation90Rotated90.imageOrientation)")
-// Pay attention that imageWithRotatedPixelsByDegrees rotates only pixel data keeping imageOrientation untouched
+// Pay attention that imageWithRotatedPixelsByDegrees rotates only pixel data ignoring imageOrientation property.
+// Returned image has default `imageOrientation` which is `.up`.
+// This is not what people expect when writing/copypasting code for rotating UIImage.
